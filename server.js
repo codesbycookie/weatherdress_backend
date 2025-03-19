@@ -12,8 +12,10 @@ checkCloudinaryConnection();
 const app = express();
 app.use(express.json());
 app.use(cors());
+const mongouri = process.env.DB_URL || "mongodb://localhost:27017/weatherdressapp";
 
-mongoose.connect("mongodb://localhost:27017/weatherdressapp").then(() => console.log("MongoDB connected"))
+
+mongoose.connect(mongouri).then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
   const upload = multer({ storage });
